@@ -6,7 +6,7 @@ window.onload=function()
 
 function onDeviceReady()
 {
-	document.getElementById('btnSave').addEventListener('click', saveContact, false);
+	document.getElementById("btnSave").addEventListener("click", saveContact, false);
 }
 
 function saveContact()
@@ -16,12 +16,8 @@ function saveContact()
 	var telephoneNumber = document.getElementById("number").value;
 	var phoneType = document.getElementById("type").value;
 	
-	var cntContact = navigator.contacts.create();
-	cntContact.name.givenName = firstName;
-	cntContact.name.familyName = lastName;
-	var phoneNumbers = [];
-	phoneNumbers[0] = new ContactField(phoneType, telephoneNumber, false);
-	cntContact.phoneNumbers = phoneNumbers;
+	var fullName = firstName + " " + lastName;
+	var cntContact = navigator.contacts.create({"displayName":fullName})
 	
 	cntContact.save();
 	
